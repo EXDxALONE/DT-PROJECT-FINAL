@@ -1,0 +1,110 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: 'Inter', 'Geist Variable', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Custom UI colors */
+  --color-accent-blue: #2563EB;
+  --color-accent-purple: #7C3AED;
+  --color-accent-cyan: #22D3EE;
+}
+
+/* Base Shadcn Variables overridden for our Dark Theme */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+}
+
+@layer base {
+  /* Force dark mode by setting root to dark theme colors */
+  :root, .dark {
+    --background: #020617;
+    --foreground: #F8FAFC;
+    
+    --card: #1E293B;
+    --card-foreground: #F8FAFC;
+    
+    --popover: #1E293B;
+    --popover-foreground: #F8FAFC;
+    
+    --primary: #2563EB;
+    --primary-foreground: #ffffff;
+    
+    --secondary: #0F172A;
+    --secondary-foreground: #94A3B8;
+    
+    --muted: #0F172A;
+    --muted-foreground: #64748B;
+    
+    --accent: #1E293B;
+    --accent-foreground: #F8FAFC;
+    
+    --destructive: #EF4444;
+    --destructive-foreground: #ffffff;
+    
+    --border: #334155;
+    --input: #334155;
+    --ring: #2563EB;
+    
+    --radius: 0.625rem;
+  }
+
+  body {
+    @apply antialiased bg-background text-foreground;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply font-bold tracking-tight;
+  }
+
+  * {
+    @apply border-border outline-ring/50;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-[length:200%_auto] animate-[gradient_4s_ease_infinite];
+  }
+
+  .text-rainbow {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-yellow-500 text-green-500 via-blue-500 to-purple-500 bg-[length:200%_auto] animate-[gradient_4s_ease_infinite];
+  }
+
+  .bg-gradient-accent {
+    @apply bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500;
+  }
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
